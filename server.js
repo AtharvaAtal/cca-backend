@@ -10,8 +10,12 @@ import chaptersRouter from './routes/chapters.js';
 import videosRouter from './routes/videos.js';
 import analyticsRouter from './routes/analytics.js';
 import studentsRouter from './routes/students.js';
-import pdfsRouter from './routes/pdfs.js';
 import authRouter from './routes/auth.js';
+import pdfsRouter from './routes/pdfs.js';
+import enrollmentsRouter from './routes/enrollments.js';
+import quizRouter from './routes/quiz.js';
+import progressRouter from './routes/progress.js';
+import certificatesRouter from './routes/certificates.js';
 
 dotenv.config();
 
@@ -32,6 +36,10 @@ app.use('/api/videos', videosRouter);
 app.use('/api/analytics', analyticsRouter);
 app.use('/api/students', studentsRouter);
 app.use('/api/pdfs', pdfsRouter);
+app.use('/api/enrollments', enrollmentsRouter);
+app.use('/api/quiz', quizRouter);
+app.use('/api/progress', progressRouter);
+app.use('/api/certificates', certificatesRouter);
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok', message: 'CCA Admin API running' }));
 
@@ -41,4 +49,3 @@ app.listen(PORT, () => {
   console.log(`\n  CCA Admin Backend running -> http://localhost:${PORT}`);
   console.log(`  Uploads served from       -> http://localhost:${PORT}/uploads\n`);
 });
-
