@@ -1,0 +1,181 @@
+{
+  "courses": [
+    {
+      "id": "c1",
+      "title": "Master Tally Prime",
+      "subtitle": "From basics to GST & payroll",
+      "description": "Complete course covering Tally Prime from basics to GST, payroll, and finalization.",
+      "category": "Tally",
+      "price": 2499,
+      "originalPrice": 3999,
+      "tag": "Bestseller",
+      "thumbnail": null,
+      "status": "published",
+      "studentsEnrolled": 1284,
+      "createdAt": "2026-03-10T00:00:00.000Z",
+      "updatedAt": "2026-06-21T09:39:21.232Z"
+    },
+    {
+      "id": "c2",
+      "title": "Advanced Excel",
+      "subtitle": "Formulas, pivot tables & dashboards",
+      "description": "Master Excel from basics to advanced for accounting professionals.",
+      "category": "Excel",
+      "price": 1999,
+      "originalPrice": 2999,
+      "tag": "New",
+      "thumbnail": null,
+      "status": "published",
+      "studentsEnrolled": 642,
+      "createdAt": "2026-04-22T00:00:00.000Z",
+      "updatedAt": "2026-06-21T09:39:21.232Z"
+    },
+    {
+      "id": "c3",
+      "title": "GST Finalization",
+      "subtitle": "Filing, returns & compliance",
+      "description": "Complete GST course covering registration, filing, returns and annual finalization.",
+      "category": "GST",
+      "price": 1799,
+      "originalPrice": 2499,
+      "tag": "Popular",
+      "thumbnail": null,
+      "status": "draft",
+      "studentsEnrolled": 0,
+      "createdAt": "2026-06-01T00:00:00.000Z",
+      "updatedAt": "2026-06-21T09:39:21.232Z"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "ch1",
+      "courseId": "c1",
+      "title": "Introduction to Tally",
+      "order": 1,
+      "status": "published"
+    },
+    {
+      "id": "ch2",
+      "courseId": "c1",
+      "title": "Company creation",
+      "order": 2,
+      "status": "published"
+    },
+    {
+      "id": "ch3",
+      "courseId": "c1",
+      "title": "Ledgers & groups",
+      "order": 3,
+      "status": "published"
+    },
+    {
+      "id": "ch4",
+      "courseId": "c2",
+      "title": "Excel basics",
+      "order": 1,
+      "status": "published"
+    },
+    {
+      "id": "ch5",
+      "courseId": "c2",
+      "title": "Formulas & functions",
+      "order": 2,
+      "status": "draft"
+    }
+  ],
+  "videos": [
+    {
+      "id": "v1",
+      "chapterId": "ch1",
+      "courseId": "c1",
+      "title": "What is Tally Prime?",
+      "description": "Introduction video covering Tally Prime basics and why it matters for accounting professionals.",
+      "filename": null,
+      "duration": "08:20",
+      "thumbnail": null,
+      "views": 3421,
+      "status": "published",
+      "order": 1,
+      "uploadedAt": "2026-03-12T00:00:00.000Z"
+    },
+    {
+      "id": "v2",
+      "chapterId": "ch1",
+      "courseId": "c1",
+      "title": "Installation & setup",
+      "description": "Step by step Tally Prime installation guide.",
+      "filename": null,
+      "duration": "12:45",
+      "thumbnail": null,
+      "views": 2998,
+      "status": "published",
+      "order": 2,
+      "uploadedAt": "2026-03-12T00:00:00.000Z"
+    }
+  ],
+  "pdfs": [],
+  "students": [
+    {
+      "id": "s1",
+      "name": "Rahul Sharma",
+      "phone": "+91 98765 43210",
+      "email": "rahul@example.com",
+      "joinedAt": "2026-03-15T00:00:00.000Z",
+      "coursesPurchased": 2
+    },
+    {
+      "id": "s2",
+      "name": "Priya Patel",
+      "phone": "+91 87654 32109",
+      "email": "priya@example.com",
+      "joinedAt": "2026-04-02T00:00:00.000Z",
+      "coursesPurchased": 1
+    },
+    {
+      "id": "s3",
+      "name": "Amit Kumar",
+      "phone": "+91 76543 21098",
+      "email": "amit@example.com",
+      "joinedAt": "2026-04-18T00:00:00.000Z",
+      "coursesPurchased": 3
+    }
+  ],
+  "purchases": [
+    {
+      "id": "p1",
+      "studentId": "s1",
+      "courseId": "c1",
+      "amount": 2499,
+      "date": "2026-03-15T00:00:00.000Z"
+    },
+    {
+      "id": "p2",
+      "studentId": "s1",
+      "courseId": "c2",
+      "amount": 1999,
+      "date": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "p3",
+      "studentId": "s2",
+      "courseId": "c1",
+      "amount": 2499,
+      "date": "2026-04-02T00:00:00.000Z"
+    },
+    {
+      "id": "p4",
+      "studentId": "s3",
+      "courseId": "c1",
+      "amount": 2499,
+      "date": "2026-04-18T00:00:00.000Z"
+    },
+    {
+      "id": "p5",
+      "studentId": "s3",
+      "courseId": "c2",
+      "amount": 1999,
+      "date": "2026-04-20T00:00:00.000Z"
+    }
+  ],
+  "testQuestions": []
+}
