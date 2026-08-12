@@ -1,4 +1,4 @@
-import pg from 'pg';
+﻿import pg from 'pg';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -10,6 +10,9 @@ export const pool = new Pool({
   host: process.env.PGHOST,
   port: process.env.PGPORT,
   database: process.env.PGDATABASE,
+  ssl: process.env.PGHOST && process.env.PGHOST.includes('localhost')
+    ? false
+    : { rejectUnauthorized: false },
 });
 
 export async function query(text, params) {
@@ -18,7 +21,6 @@ export async function query(text, params) {
 }
 
 export async function initDB() {
-  // sanity check connection on boot
   try {
     await pool.query('SELECT NOW()');
     console.log('  Postgres connected ✔');
