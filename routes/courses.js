@@ -1,8 +1,10 @@
 ﻿import express from 'express';
+import jwt from 'jsonwebtoken';
 import { query } from '../db.js';
 import { uploadThumbnail } from '../upload.js';
 
 const router = express.Router();
+const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_change_me';
 
 function toCourseJSON(c) {
   return {
@@ -20,6 +22,19 @@ function toCourseJSON(c) {
     createdAt: c.created_at,
     updatedAt: c.updated_at
   };
+}
+
+function getStudentIdIfAny(req) {
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith('Bearer ')) return null;
+  const token = authHeader.split(' ')[1];
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    if (decoded.role === 'student') return decoded.id;
+    return null;
+  } catch (err) {
+    return null;
+  }
 }
 
 router.get('/', async (req, res) => {
@@ -40,6 +55,16 @@ router.get('/:id', async (req, res) => {
   if (courses.length === 0) return res.status(404).json({ error: 'Course not found' });
   const course = courses[0];
 
+  const studentId = getStudentIdIfAny(req);
+  let purchased = false;
+  if (studentId) {
+    const purchaseRows = await query(
+      'SELECT id FROM purchases WHERE student_id = $1 AND course_id = $2',
+      [studentId, req.params.id]
+    );
+    purchased = purchaseRows.length > 0;
+  }
+
   const chapterRows = await query(
     'SELECT * FROM chapters WHERE course_id = $1 ORDER BY chapter_order ASC',
     [req.params.id]
@@ -52,14 +77,18 @@ router.get('/:id', async (req, res) => {
     courseId: ch.course_id,
     title: ch.title,
     order: ch.chapter_order,
+    orderIndex: ch.chapter_order,
     status: ch.status,
+    locked: !purchased,
+    videoCount: videoRows.filter((v) => v.chapter_id === ch.id).length,
+    quizCount: 0,
     videos: videoRows
       .filter((v) => v.chapter_id === ch.id)
       .sort((a, b) => a.video_order - b.video_order),
-    pdfs: pdfRows.filter((p) => p.chapter_id === ch.id)
+    pdfNotes: pdfRows.filter((p) => p.chapter_id === ch.id)
   }));
 
-  res.json({ ...toCourseJSON(course), chapters });
+  res.json({ ...toCourseJSON(course), purchased, chapters });
 });
 
 router.post('/', uploadThumbnail.single('thumbnail'), async (req, res) => {
